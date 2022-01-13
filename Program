@@ -1,0 +1,47 @@
+using System;
+
+namespace RoverControlCenter
+{
+  class Program
+  {
+    static void Main(string[] args)
+    {
+      MoonRover lunokhod = new MoonRover("Lunokhod 1", 1970);
+      MoonRover apollo = new MoonRover("Apollo 15", 1971);
+      MarsRover sojourner = new MarsRover("Sojourner", 1997);
+      Satellite sputnik = new Satellite("Sputnik", 1957); 
+  		
+      Rover[] rovers = {lunokhod, apollo, sojourner};
+
+     // DirectAll(rovers);
+
+     /* Array of vehicles as Objects and Tracking a ... to check it has worked. This is later replaced by an array of IDirectable[]
+     
+     Object[] vehicles = {sputnik, lunokhod, apollo, sojourner};
+
+      foreach (Object item in vehicles)
+      {
+        Console.WriteLine($"Tracking a {item.GetType()} type vehicle.");
+      } */
+
+      IDirectable[] probes = {sputnik, lunokhod, apollo, sojourner};
+
+      DirectAll(probes);
+
+
+      
+    } //end of main
+
+    public static void DirectAll(IDirectable[] rovers)
+    {
+      foreach (IDirectable vehicle in rovers)
+      {
+        Console.WriteLine(vehicle.GetInfo());
+        Console.WriteLine(vehicle.Explore());
+        Console.WriteLine(vehicle.Collect()+"\n");
+      }
+      
+    }
+
+  }
+}
